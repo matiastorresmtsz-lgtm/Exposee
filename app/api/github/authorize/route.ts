@@ -1,11 +1,11 @@
 import { getAuth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
 function createState() {
   return Math.random().toString(36).substring(2) + Date.now().toString(36);
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const { userId } = getAuth(request);
   if (!userId) {
     return NextResponse.redirect(new URL("/sign-in", request.url));

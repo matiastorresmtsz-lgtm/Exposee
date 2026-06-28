@@ -70,6 +70,6 @@ export async function GET(request: NextRequest) {
   });
 
   const response = NextResponse.redirect(new URL("/dashboard", request.url));
-  response.cookies.delete("exposee_github_oauth_state", { path: "/" });
+  response.cookies.delete({ name: "exposee_github_oauth_state", path: "/" });
   return response;
 }

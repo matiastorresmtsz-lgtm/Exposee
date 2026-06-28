@@ -27,31 +27,31 @@ export default function ConnectGitHubPage() {
   const errorMessage = errorKey ? errorMessages[errorKey] ?? "An unexpected error occurred while connecting GitHub." : "";
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-black text-white">
       <div className="mx-auto max-w-4xl px-6 py-16">
-        <div className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-10 shadow-2xl shadow-cyan-500/10">
+        <div className="rounded-lg border border-white/10 bg-white/5 p-10 shadow-2xl shadow-black/50">
           <div className="space-y-6 text-center">
-            <p className="text-sm uppercase tracking-[0.24em] text-cyan-300">GitHub connect</p>
+            <p className="text-sm uppercase tracking-[0.24em] text-white/50">GitHub connect</p>
             <h1 className="text-4xl font-semibold text-white">Authorize GitHub access</h1>
-            <p className="mx-auto max-w-2xl text-slate-400">
+            <p className="mx-auto max-w-2xl text-white/60">
               Hi {displayName}, connect GitHub so Exposee can scan your repositories and surface leaks, secrets, and vulnerable packages.
             </p>
           </div>
 
-          <div className="mt-10 rounded-3xl border border-white/10 bg-slate-950/70 p-8">
+          <div className="mt-10 rounded-lg border border-white/10 bg-black/70 p-8">
             <div className="space-y-4">
               <p className="text-lg font-semibold text-white">Why connect GitHub?</p>
-              <p className="text-slate-400">We only scan repos that you authorize. A GitHub connection lets Exposee read repository metadata and commit history for leak detection.</p>
-              <p className="text-slate-400">No credentials are stored, and your connection is read-only.</p>
+              <p className="text-white/60">We only scan repos that you authorize. A GitHub connection lets Exposee read repository metadata and commit history for leak detection.</p>
+              <p className="text-white/60">No credentials are stored, and your connection is read-only.</p>
             </div>
             {errorMessage ? (
-              <div className="mt-6 rounded-3xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200">
+              <div className="mt-6 rounded-lg border border-white/20 bg-white/5 p-4 text-sm text-white/80">
                 {errorMessage}
               </div>
             ) : null}
             <a
               href="/api/github/authorize"
-              className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
             >
               Connect GitHub
             </a>
