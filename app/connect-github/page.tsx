@@ -10,7 +10,9 @@ const errorMessages: Record<string, string> = {
   access_denied: "GitHub authorization was canceled or denied. Please allow access to continue.",
 };
 
-export default function ConnectGitHubPage() {
+import { Suspense } from "react";
+
+function ConnectGitHubContent() {
   const { isLoaded, isSignedIn, user } = useUser();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -59,5 +61,13 @@ export default function ConnectGitHubPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ConnectGitHubPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black text-white flex items-center justify-center">Loading...</div>}>
+      <ConnectGitHubContent />
+    </Suspense>
   );
 }
