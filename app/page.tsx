@@ -29,7 +29,7 @@ export default function Home() {
             </Link>
             {isLoaded ? (
               isSignedIn ? (
-                <UserButton afterSignOutUrl="/" />
+                <UserButton />
               ) : (
                 <Link className="rounded-lg bg-white px-5 py-2 text-sm font-semibold text-black transition hover:bg-white/90" href="/sign-in">
                   Sign in
