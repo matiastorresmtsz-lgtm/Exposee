@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="sticky top-0 z-20 border-b border-white/10 bg-black/95 backdrop-blur-xl">
+      <header className="sticky top-0 z-20 border-b border-white/[0.12] bg-[#111111]/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-black text-xl font-black">
@@ -16,22 +16,20 @@ export default function Home() {
             </div>
             <div>
               <p className="text-sm uppercase tracking-[0.24em] text-white">Exposee</p>
-              <p className="text-sm text-white/50">Find repo secrets, env leaks and exposed info</p>
+              <p className="text-sm text-white/60">Find repo secrets, env leaks and exposed info</p>
             </div>
           </div>
 
           <nav className="hidden items-center gap-3 md:flex">
-            <Link className="rounded-lg border border-white/20 px-4 py-2 text-sm text-white/80 transition hover:border-white hover:text-white" href="/dashboard">
+            <Link className="rounded-lg border border-white/30 px-4 py-2 text-sm text-white/90 transition hover:border-white hover:text-white" href="/dashboard">
               Dashboard
             </Link>
-            <Link className="rounded-lg border border-white/20 px-4 py-2 text-sm text-white/80 transition hover:border-white hover:text-white" href="/connect-github">
+            <Link className="rounded-lg border border-white/30 px-4 py-2 text-sm text-white/90 transition hover:border-white hover:text-white" href="/connect-github">
               Connect GitHub
             </Link>
             {isLoaded ? (
               isSignedIn ? (
-                <div className="rounded-lg border border-white/20 bg-white/5 p-1">
-                  <UserButton />
-                </div>
+                <UserButton afterSignOutUrl="/" />
               ) : (
                 <Link className="rounded-lg bg-white px-5 py-2 text-sm font-semibold text-black transition hover:bg-white/90" href="/sign-in">
                   Sign in
@@ -238,12 +236,14 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-white/10 bg-black/90">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 text-sm text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Exposee — built for secure teams.</p>
-          <div className="flex flex-wrap gap-4">
-            <a className="transition hover:text-white" href="#docs">Docs</a>
-            <a className="transition hover:text-white" href="#privacy">Privacy</a>
+      <footer className="mx-auto max-w-7xl px-6 pb-8 pt-4">
+        <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-5 shadow-2xl shadow-black/50">
+          <div className="flex flex-col gap-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {new Date().getFullYear()} Exposee — built for secure teams.</p>
+            <div className="flex flex-wrap gap-4">
+              <a className="transition hover:text-white" href="#docs">Docs</a>
+              <a className="transition hover:text-white" href="#privacy">Privacy</a>
+            </div>
           </div>
         </div>
       </footer>
