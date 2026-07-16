@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 
@@ -11,9 +12,7 @@ export default function Home() {
       <header className="sticky top-0 z-20 border-b border-white/[0.12] bg-[#111111]/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-black text-xl font-black">
-              E
-            </div>
+            <img src="/logo.png" alt="Exposee" className="h-12 w-12 object-contain" />
             <div>
               <p className="text-sm uppercase tracking-[0.24em] text-white">Exposee</p>
               <p className="text-sm text-white/60">Find repo secrets, env leaks and exposed info</p>
@@ -175,6 +174,8 @@ export default function Home() {
           </div>
         </section>
 
+        <TokenSystemSection />
+
         <section id="faq" className="mt-20">
           <div className="space-y-6 rounded-xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/50">
             <div className="space-y-3">
@@ -185,21 +186,51 @@ export default function Home() {
             <div className="space-y-4">
               <details className="group rounded-lg border border-white/10 bg-black/50 p-5 transition hover:border-white/30">
                 <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">
-                  Why choose Exposee over other scanners?
+                  Why choose Exposee over the competition?
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
-                  Many systems rely on exact patterns or fixed signature lists, which means they can miss strange secrets or non-standard leaks. Exposee scans repository history, files, and manifests more broadly so you catch leaks that narrow tools often overlook.
+                  Traditional scanners rely strictly on narrow signature databases or exact pattern matching, missing complex leaks. Exposee goes beyond basics by scanning repository commit history, dependency manifests, and configurations to locate accidental leaks that standard tools miss entirely.
                 </p>
               </details>
 
               <details className="group rounded-lg border border-white/10 bg-black/50 p-5 transition hover:border-white/30">
                 <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">
-                  Why not someone else?
+                  Are we the only dedicated option specifically for GitHub?
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
-                  Other tools are often built for specific leaks and exact matches, so they may miss secrets hidden in config files, commit history, or unusual formats. Exposee looks for everything in the repository and aims to surface more real risks, not just the obvious ones.
+                  Yes, Exposee is built from the ground up exclusively for GitHub. Rather than offering a generic, multi-provider platform, we focus entirely on native integration with the GitHub ecosystem, including OAuth setups, repository webhooks, pull request branch protections, and CI/CD pipelines.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-white/10 bg-black/50 p-5 transition hover:border-white/30">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">
+                  Do I need technical knowledge to read the security analysis?
+                  <span className="transition duration-200 group-open:-rotate-45">+</span>
+                </summary>
+                <p className="mt-4 leading-7 text-white/50">
+                  Not at all. We provide an extremely simple security analysis that anyone can read and understand, even without technical knowledge. We strip away complex security jargon and show exactly what is exposed (e.g., API keys or config files) and outline simple, step-by-step instructions to remediate it.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-white/10 bg-black/50 p-5 transition hover:border-white/30">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">
+                  Is Exposee free to use?
+                  <span className="transition duration-200 group-open:-rotate-45">+</span>
+                </summary>
+                <p className="mt-4 leading-7 text-white/50">
+                  Yes, standard repository scanning and core leak detection are completely free. Later, we plan to implement paid tokens to unlock advanced security options, automated workflows, and enterprise-scale features.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-white/10 bg-black/50 p-5 transition hover:border-white/30">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">
+                  How long does a scan take?
+                  <span className="transition duration-200 group-open:-rotate-45">+</span>
+                </summary>
+                <p className="mt-4 leading-7 text-white/50">
+                  Exposee is built for performance. The average scanning duration for standard repositories is under 15 seconds, ensuring you receive near-instant results for your commits and dependencies.
                 </p>
               </details>
 
@@ -209,7 +240,7 @@ export default function Home() {
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
-                  We focus on broad coverage, which means we surface more potential issues and help you investigate further. While no scanner is perfect, Exposee reduces the risk from missed env leaks and repo exposure by checking more than just exact signatures.
+                  We target broad scanning coverage to find every potential leak. While no scanner can be 100% perfect, Exposee minimizes false alerts and walks you through verifying and resolving every security issue flagged.
                 </p>
               </details>
             </div>
@@ -241,12 +272,336 @@ export default function Home() {
           <div className="flex flex-col gap-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
             <p>© {new Date().getFullYear()} Exposee — built for secure teams.</p>
             <div className="flex flex-wrap gap-4">
-              <a className="transition hover:text-white" href="#docs">Docs</a>
-              <a className="transition hover:text-white" href="#privacy">Privacy</a>
+              <a 
+                className="transition text-white/60 hover:text-white" 
+                href="https://github.com/matiastorresyc/exposee-app"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Repository"
+              >
+                <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.193 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
       </footer>
     </div>
+  );
+}
+
+const tokenSteps = [
+  {
+    id: 1,
+    title: "1. Scan Request",
+    short: "CI/CD or CLI initiates a scan",
+    desc: "Your CI/CD pipeline or developer terminal requests a repository scan. Instead of sending a static secret key, a temporary transaction handshake is initiated.",
+    color: "from-blue-500 to-indigo-500",
+    glowColor: "rgba(59, 130, 246, 0.15)",
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    )
+  },
+  {
+    id: 2,
+    title: "2. Ephemeral Token Issuance",
+    short: "OIDC signed token is minted",
+    desc: "Our secure Identity Authority issues a cryptographically-signed OpenID Connect (OIDC) token. The token contains precise, granular scopes and a short expiration time (e.g., 5 minutes).",
+    color: "from-purple-500 to-pink-500",
+    glowColor: "rgba(168, 85, 247, 0.15)",
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m-9 9a5 5 0 114.73-6h2.27a2 2 0 002-2V9a2 2 0 00-2-2h-2.27a5 5 0 01-11.73 0m13 9a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    )
+  },
+  {
+    id: 3,
+    title: "3. Cryptographic Verification",
+    short: "Decentralized trust handshake",
+    desc: "The Exposee scanning gateway validates the token signature, confirms environmental attestation (ensuring the caller is the actual, un-tampered CI environment), and checks the expiry timestamp.",
+    color: "from-emerald-500 to-teal-500",
+    glowColor: "rgba(16, 185, 129, 0.15)",
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    )
+  },
+  {
+    id: 4,
+    title: "4. Scoped Scan & Self-Destruct",
+    short: "Execution starts, token expires",
+    desc: "Access is granted only to the specific resources requested. Once the scan completes, the token is automatically invalidated and self-destructs. Static credentials are never compromised.",
+    color: "from-amber-500 to-orange-500",
+    glowColor: "rgba(245, 158, 11, 0.15)",
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    )
+  }
+];
+
+function TokenSystemSection() {
+  const [activeStep, setActiveStep] = useState(1);
+  const [isHovered, setIsHovered] = useState<number | null>(null);
+
+  // Automatically cycle through steps every 4.5 seconds if the user is not hovering
+  useEffect(() => {
+    if (isHovered !== null) return;
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev % 4) + 1);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  const currentStep = tokenSteps[activeStep - 1];
+
+  return (
+    <section id="tokens" className="mt-20 space-y-6">
+      {/* Custom inline keyframes and utility classes */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes march {
+          to {
+            stroke-dashoffset: -20;
+          }
+        }
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.15; }
+          50% { opacity: 0.35; }
+        }
+        .animate-march {
+          stroke-dasharray: 6, 6;
+          animation: march 1.5s linear infinite;
+        }
+        .animate-glow {
+          animation: pulse-glow 3s ease-in-out infinite;
+        }
+      `}} />
+
+      <div className="space-y-3">
+        <p className="text-sm uppercase tracking-[0.24em] text-white/50">Our Token System</p>
+        <h2 className="text-3xl font-semibold text-white sm:text-4xl">Future-proofing repo security with zero-trust credentials.</h2>
+      </div>
+
+      <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-stretch mt-8">
+        {/* Left Column: Explanation */}
+        <div className="flex flex-col justify-between space-y-6">
+          <p className="text-lg leading-8 text-white/60">
+            Exposee is developing a decentralized, cryptographically attested token architecture to completely eliminate the need for storing long-lived GitHub access tokens or static API keys.
+          </p>
+          
+          <div className="space-y-3">
+            {tokenSteps.map((step) => {
+              const isActive = activeStep === step.id;
+              return (
+                <button
+                  key={step.id}
+                  onClick={() => setActiveStep(step.id)}
+                  onMouseEnter={() => {
+                    setIsHovered(step.id);
+                    setActiveStep(step.id);
+                  }}
+                  onMouseLeave={() => setIsHovered(null)}
+                  className={`w-full text-left flex gap-4 p-4 rounded-xl border transition-all duration-300 ${
+                    isActive
+                      ? "border-white/20 bg-white/5 shadow-lg shadow-white/5"
+                      : "border-white/5 bg-transparent hover:border-white/10 hover:bg-white/[0.02]"
+                  }`}
+                >
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
+                    isActive ? "border-white/40 bg-white text-black" : "border-white/15 bg-white/5 text-white/60"
+                  }`}>
+                    {step.icon}
+                  </div>
+                  <div>
+                    <h3 className={`font-semibold text-sm sm:text-base transition-colors ${
+                      isActive ? "text-white" : "text-white/70"
+                    }`}>
+                      {step.title}
+                    </h3>
+                    <p className={`text-xs mt-1 transition-colors ${
+                      isActive ? "text-white/60" : "text-white/40"
+                    }`}>
+                      {step.short}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right Column: Interactive Graphic */}
+        <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 md:p-8 shadow-2xl shadow-black/50 flex flex-col justify-between min-h-[380px]">
+          {/* Glowing background */}
+          <div 
+            className="absolute inset-0 -z-10 animate-glow transition-all duration-500 opacity-20 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle at 50% 30%, ${currentStep.glowColor} 0%, transparent 60%)`
+            }}
+          />
+
+          {/* Graphic Visualization */}
+          <div className="w-full py-4 flex justify-center items-center">
+            <svg viewBox="0 0 460 120" className="w-full max-w-[420px] overflow-visible">
+              {/* Connection Lines */}
+              <defs>
+                <linearGradient id="gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="#a855f7" />
+                </linearGradient>
+                <linearGradient id="gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#a855f7" />
+                  <stop offset="100%" stopColor="#10b981" />
+                </linearGradient>
+                <linearGradient id="gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#10b981" />
+                  <stop offset="100%" stopColor="#f59e0b" />
+                </linearGradient>
+              </defs>
+
+              {/* Path 1 -> 2 */}
+              <path d="M 50 60 H 155" stroke="rgba(255,255,255,0.06)" strokeWidth="3" fill="none" />
+              {activeStep >= 2 && (
+                <path 
+                  d="M 50 60 H 155" 
+                  stroke="url(#gradient-1)" 
+                  strokeWidth="3" 
+                  fill="none" 
+                  className={activeStep === 2 ? "animate-march" : ""}
+                />
+              )}
+
+              {/* Path 2 -> 3 */}
+              <path d="M 155 60 H 260" stroke="rgba(255,255,255,0.06)" strokeWidth="3" fill="none" />
+              {activeStep >= 3 && (
+                <path 
+                  d="M 155 60 H 260" 
+                  stroke="url(#gradient-2)" 
+                  strokeWidth="3" 
+                  fill="none" 
+                  className={activeStep === 3 ? "animate-march" : ""}
+                />
+              )}
+
+              {/* Path 3 -> 4 */}
+              <path d="M 260 60 H 365" stroke="rgba(255,255,255,0.06)" strokeWidth="3" fill="none" />
+              {activeStep >= 4 && (
+                <path 
+                  d="M 260 60 H 365" 
+                  stroke="url(#gradient-3)" 
+                  strokeWidth="3" 
+                  fill="none" 
+                  className={activeStep === 4 ? "animate-march" : ""}
+                />
+              )}
+
+              {/* Nodes */}
+              {[1, 2, 3, 4].map((id) => {
+                const step = tokenSteps[id - 1];
+                const isActive = activeStep === id;
+                const isPassed = activeStep > id;
+                const x = 50 + (id - 1) * 105;
+                const y = 60;
+                
+                let strokeColor = "rgba(255,255,255,0.15)";
+                let fillColor = "#0e0e0e";
+                let textColor = "text-white/40";
+                
+                if (isActive) {
+                  strokeColor = "white";
+                  fillColor = "#161616";
+                  textColor = "text-white";
+                } else if (isPassed) {
+                  strokeColor = id === 1 ? "#3b82f6" : id === 2 ? "#a855f7" : "#10b981";
+                  fillColor = "#090909";
+                  textColor = "text-white/60";
+                }
+
+                return (
+                  <g 
+                    key={id} 
+                    className="cursor-pointer transition-all duration-300"
+                    onClick={() => setActiveStep(id)}
+                    onMouseEnter={() => {
+                      setIsHovered(id);
+                      setActiveStep(id);
+                    }}
+                    onMouseLeave={() => setIsHovered(null)}
+                  >
+                    {/* Ring glow for active node */}
+                    {isActive && (
+                      <circle 
+                        cx={x} 
+                        cy={y} 
+                        r="24" 
+                        fill="transparent" 
+                        stroke={id === 1 ? "#3b82f6" : id === 2 ? "#a855f7" : id === 3 ? "#10b981" : "#f59e0b"} 
+                        strokeWidth="1.5"
+                        className="animate-ping opacity-30" 
+                      />
+                    )}
+                    <circle 
+                      cx={x} 
+                      cy={y} 
+                      r="18" 
+                      fill={fillColor} 
+                      stroke={strokeColor} 
+                      strokeWidth={isActive ? "2" : "1.5"}
+                      className="transition-all duration-300"
+                    />
+                    <foreignObject x={x - 9} y={y - 9} width="18" height="18" className="pointer-events-none">
+                      <div className={`w-full h-full flex items-center justify-center ${textColor}`}>
+                        {step.icon}
+                      </div>
+                    </foreignObject>
+                    {/* Label */}
+                    <text 
+                      x={x} 
+                      y={y + 36} 
+                      textAnchor="middle" 
+                      className={`text-[9px] font-mono uppercase tracking-wider transition-colors duration-300 fill-current ${
+                        isActive ? "fill-white font-bold" : "fill-white/40"
+                      }`}
+                    >
+                      Step {id}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+
+          {/* Details Card */}
+          <div className="relative mt-6 rounded-lg bg-black/60 p-5 ring-1 ring-white/10 flex-1 flex flex-col justify-center min-h-[140px] transition-all duration-300">
+            <div className="flex items-center gap-3">
+              <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold ring-1 ring-inset ${
+                activeStep === 1 
+                  ? "bg-blue-400/10 text-blue-400 ring-blue-400/20" 
+                  : activeStep === 2 
+                  ? "bg-purple-400/10 text-purple-400 ring-purple-400/20" 
+                  : activeStep === 3 
+                  ? "bg-emerald-400/10 text-emerald-400 ring-emerald-400/20" 
+                  : "bg-amber-400/10 text-amber-400 ring-amber-400/20"
+              }`}>
+                {activeStep === 4 ? "COMPLETE" : "IN PROGRESS"}
+              </span>
+              <span className="text-xs text-white/40">Zero-Trust Security Options</span>
+            </div>
+            <h4 className="mt-3 font-semibold text-white text-base">
+              {currentStep.title}
+            </h4>
+            <p className="mt-2 text-xs leading-5 text-white/60">
+              {currentStep.desc}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

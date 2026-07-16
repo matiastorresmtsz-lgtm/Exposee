@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Exposee — GitHub leak scanner",
   description: "Exposee scans GitHub repos for leaked env variables, secrets, and vulnerable packages.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
