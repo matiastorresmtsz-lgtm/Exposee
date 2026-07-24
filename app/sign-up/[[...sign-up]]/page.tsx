@@ -9,7 +9,7 @@ export default function SignUpPage() {
         <img src="/logo.png" alt="Exposee" className="w-10 h-10 object-contain" />
         <span className="font-bold text-white tracking-wide text-lg">Exposee</span>
       </div>
-      <SignUp forceRedirectUrl="/dashboard" signInUrl="/sign-in" />
+      <SignUp forceRedirectUrl="/" signInUrl="/sign-in" />
     </div>
   );
 }
