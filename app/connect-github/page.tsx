@@ -53,7 +53,7 @@ function ConnectGitHubContent() {
             ) : null}
             <a
               href="/api/github/authorize"
-              className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-blue-600 hover:bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition shadow-lg shadow-blue-500/20"
             >
               Connect GitHub
             </a>

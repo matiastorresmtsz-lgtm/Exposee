@@ -12,18 +12,16 @@ export default function Home() {
       <header className="sticky top-0 z-20 border-b border-white/[0.12] bg-[#111111]/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-4">
-            <img src="/logo.png" alt="Exposee" className="h-12 w-12 object-contain" />
-            <div>
-              <p className="text-sm uppercase tracking-[0.24em] text-white">Exposee</p>
-              <p className="text-sm text-white/60">Find repo secrets, env leaks and exposed info</p>
-            </div>
+            <Link href="/" className="hover:opacity-90 transition">
+              <span className="text-sm font-bold uppercase tracking-[0.24em] text-blue-500">Exposee</span>
+            </Link>
           </div>
 
           <nav className="hidden items-center gap-3 md:flex">
-            <Link className="rounded-lg border border-white/30 px-4 py-2 text-sm text-white/90 transition hover:border-white hover:text-white" href="/dashboard">
+            <Link className="rounded-lg border border-white/20 px-4 py-2 text-sm text-white/95 transition hover:border-white/40 hover:text-white" href="/dashboard">
               Dashboard
             </Link>
-            <Link className="rounded-lg border border-white/30 px-4 py-2 text-sm text-white/90 transition hover:border-white hover:text-white" href="/connect-github">
+            <Link className="rounded-lg bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition shadow-sm shadow-blue-500/10" href="/connect-github">
               Connect GitHub
             </Link>
             {isLoaded ? (
@@ -41,59 +39,79 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-6 pb-16 pt-10">
-        <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center rounded-lg border border-white/20 bg-white/5 px-4 py-1 text-sm font-semibold uppercase tracking-[0.24em] text-white/70">
-              GitHub leak scanner
-            </div>
-            <div className="space-y-6">
-              <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Find exposed env variables, secrets, and leaked repo data instantly.
-              </h1>
-              <p className="max-w-2xl text-lg leading-8 text-white/60">
-                Exposee scans GitHub repositories, commit history, and dependency manifests to surface accidental leaks, API keys, tokens, and vulnerable packages. Clear findings, actionable remediation, and CI-ready protection.
+      <main className="mx-auto max-w-7xl px-6 pb-16 pt-[70]">
+        {/* Centered Hero Section */}
+        <section className="flex flex-col items-center text-center space-y-8 pb-16 md:pb-24 pt-0 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/80 backdrop-blur-md">
+            <svg className="h-3.5 w-3.5 fill-blue-500 text-blue-500" viewBox="0 0 24 24" aria-hidden="true">
+              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.193 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" />
+            </svg>
+            <span>Live Git Monitoring &amp; Secret Auditing</span>
+          </div>
+
+          <div className="space-y-6">
+            <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15] sm:leading-[1.15] lg:leading-[1.15]">
+              Find exposed secrets in your repositories with{" "}
+              <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent block mt-2 font-semibold">
+                Exposee Leak Scanner
+              </span>
+            </h1>
+            <p className="max-w-2xl mx-auto text-lg leading-8 text-white/60">
+              Exposee scans GitHub repositories, commit history, and dependency manifests to surface accidental leaks, API keys, tokens, and vulnerable packages. Clear findings, actionable remediation, and CI-ready protection.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4 sm:flex-row justify-center w-full">
+            <a className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 hover:bg-blue-500 hover:shadow-blue-500/30 transition duration-200" href="/dashboard">
+              Start free scan
+            </a>
+            <a className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm text-white transition hover:border-blue-500 hover:bg-blue-950/20 hover:text-blue-400" href="#features">
+              Explore features
+            </a>
+          </div>
+        </section>
+
+        {/* Console Mockup & Stats Section */}
+        <section className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-stretch mt-12 pt-12 border-t border-white/[0.08]">
+          {/* Left Column: Stats and description */}
+          <div className="flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-white">Continuous codebase security checks</h3>
+              <p className="text-sm text-white/60 leading-relaxed">
+                Ensure credentials and API tokens are never exposed in your public or private repositories. Exposee acts as a dynamic monitor guarding your Git branches.
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <a className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-white/10 transition hover:bg-white/90" href="/dashboard">
-                Start free scan
-              </a>
-              <a className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm text-white transition hover:border-white hover:bg-white/10" href="#features">
-                Explore features
-              </a>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
-                <p className="text-sm uppercase tracking-[0.2em] text-white/50">Scanned repos</p>
-                <p className="mt-3 text-2xl font-semibold text-white">100+</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/50">Scanned repos</p>
+                <p className="mt-2 text-2xl font-bold text-blue-400">100+</p>
               </div>
-              <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
-                <p className="text-sm uppercase tracking-[0.2em] text-white/50">Avg scan time</p>
-                <p className="mt-3 text-2xl font-semibold text-white">14s</p>
+              <div className="rounded-lg border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/50">Avg scan time</p>
+                <p className="mt-2 text-2xl font-bold text-blue-400">14s</p>
               </div>
-              <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
-                <p className="text-sm uppercase tracking-[0.2em] text-white/50">Detected leaks</p>
-                <p className="mt-3 text-2xl font-semibold text-white">env, key, token</p>
+              <div className="rounded-lg border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/50">Detected leaks</p>
+                <p className="mt-2 text-2xl font-bold text-blue-400">env, key, token</p>
               </div>
-              <div className="rounded-lg border border-white/10 bg-white/5 px-5 py-4">
-                <p className="text-sm uppercase tracking-[0.2em] text-white/50">CI ready</p>
-                <p className="mt-3 text-2xl font-semibold text-white">merge protection</p>
+              <div className="rounded-lg border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/50">CI ready</p>
+                <p className="mt-2 text-2xl font-bold text-blue-400">merge guard</p>
               </div>
             </div>
           </div>
 
-          <div className="relative isolate overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/50">
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.06),_transparent_50%)]" />
+          {/* Right Column: Console Mockup */}
+          <div className="relative isolate overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/50 flex flex-col justify-center">
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.12),_transparent_50%)]" />
             <div className="rounded-lg bg-black/60 p-6 ring-1 ring-white/10">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold text-white">Latest repository scan</p>
                   <p className="mt-1 text-xs text-white/40">Updated 5 minutes ago</p>
                 </div>
-                <span className="rounded-lg border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/70">Secure</span>
+                <span className="rounded-lg border border-blue-500/20 bg-blue-500/5 px-3 py-1 text-xs text-blue-400 font-semibold">Secure</span>
               </div>
               <div className="mt-6 space-y-4">
                 <div className="rounded-lg bg-black px-4 py-4 text-white ring-1 ring-white/10">
@@ -255,10 +273,10 @@ export default function Home() {
                 <p className="mt-3 text-2xl font-semibold text-white">Start a free scan and stop leaked secrets before they spread.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Link className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90" href="/dashboard">
+                <Link className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 hover:bg-blue-500 transition hover:shadow-blue-500/35" href="/dashboard">
                   Start free scan
                 </Link>
-                <Link className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm text-white transition hover:border-white hover:bg-white/10" href="/sign-in">
+                <Link className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm text-white transition hover:border-blue-500 hover:bg-blue-950/20 hover:text-blue-400" href="/sign-in">
                   Sign in
                 </Link>
               </div>
@@ -272,8 +290,8 @@ export default function Home() {
           <div className="flex flex-col gap-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
             <p>© {new Date().getFullYear()} Exposee — built for secure teams.</p>
             <div className="flex flex-wrap gap-4">
-              <a 
-                className="transition text-white/60 hover:text-white" 
+              <a
+                className="transition text-white/60 hover:text-white"
                 href="https://github.com/matiastorresyc/exposee-app"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -364,7 +382,8 @@ function TokenSystemSection() {
   return (
     <section id="tokens" className="mt-20 space-y-6">
       {/* Custom inline keyframes and utility classes */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes march {
           to {
             stroke-dashoffset: -20;
@@ -394,7 +413,7 @@ function TokenSystemSection() {
           <p className="text-lg leading-8 text-white/60">
             Exposee is developing a decentralized, cryptographically attested token architecture to completely eliminate the need for storing long-lived GitHub access tokens or static API keys.
           </p>
-          
+
           <div className="space-y-3">
             {tokenSteps.map((step) => {
               const isActive = activeStep === step.id;
@@ -407,26 +426,22 @@ function TokenSystemSection() {
                     setActiveStep(step.id);
                   }}
                   onMouseLeave={() => setIsHovered(null)}
-                  className={`w-full text-left flex gap-4 p-4 rounded-xl border transition-all duration-300 ${
-                    isActive
-                      ? "border-white/20 bg-white/5 shadow-lg shadow-white/5"
-                      : "border-white/5 bg-transparent hover:border-white/10 hover:bg-white/[0.02]"
-                  }`}
+                  className={`w-full text-left flex gap-4 p-4 rounded-xl border transition-all duration-300 ${isActive
+                    ? "border-white/20 bg-white/5 shadow-lg shadow-white/5"
+                    : "border-white/5 bg-transparent hover:border-white/10 hover:bg-white/[0.02]"
+                    }`}
                 >
-                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
-                    isActive ? "border-white/40 bg-white text-black" : "border-white/15 bg-white/5 text-white/60"
-                  }`}>
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${isActive ? "border-white/40 bg-white text-black" : "border-white/15 bg-white/5 text-white/60"
+                    }`}>
                     {step.icon}
                   </div>
                   <div>
-                    <h3 className={`font-semibold text-sm sm:text-base transition-colors ${
-                      isActive ? "text-white" : "text-white/70"
-                    }`}>
+                    <h3 className={`font-semibold text-sm sm:text-base transition-colors ${isActive ? "text-white" : "text-white/70"
+                      }`}>
                       {step.title}
                     </h3>
-                    <p className={`text-xs mt-1 transition-colors ${
-                      isActive ? "text-white/60" : "text-white/40"
-                    }`}>
+                    <p className={`text-xs mt-1 transition-colors ${isActive ? "text-white/60" : "text-white/40"
+                      }`}>
                       {step.short}
                     </p>
                   </div>
@@ -439,7 +454,7 @@ function TokenSystemSection() {
         {/* Right Column: Interactive Graphic */}
         <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 md:p-8 shadow-2xl shadow-black/50 flex flex-col justify-between min-h-[380px]">
           {/* Glowing background */}
-          <div 
+          <div
             className="absolute inset-0 -z-10 animate-glow transition-all duration-500 opacity-20 pointer-events-none"
             style={{
               background: `radial-gradient(circle at 50% 30%, ${currentStep.glowColor} 0%, transparent 60%)`
@@ -468,11 +483,11 @@ function TokenSystemSection() {
               {/* Path 1 -> 2 */}
               <path d="M 50 60 H 155" stroke="rgba(255,255,255,0.06)" strokeWidth="3" fill="none" />
               {activeStep >= 2 && (
-                <path 
-                  d="M 50 60 H 155" 
-                  stroke="url(#gradient-1)" 
-                  strokeWidth="3" 
-                  fill="none" 
+                <path
+                  d="M 50 60 H 155"
+                  stroke="url(#gradient-1)"
+                  strokeWidth="3"
+                  fill="none"
                   className={activeStep === 2 ? "animate-march" : ""}
                 />
               )}
@@ -480,11 +495,11 @@ function TokenSystemSection() {
               {/* Path 2 -> 3 */}
               <path d="M 155 60 H 260" stroke="rgba(255,255,255,0.06)" strokeWidth="3" fill="none" />
               {activeStep >= 3 && (
-                <path 
-                  d="M 155 60 H 260" 
-                  stroke="url(#gradient-2)" 
-                  strokeWidth="3" 
-                  fill="none" 
+                <path
+                  d="M 155 60 H 260"
+                  stroke="url(#gradient-2)"
+                  strokeWidth="3"
+                  fill="none"
                   className={activeStep === 3 ? "animate-march" : ""}
                 />
               )}
@@ -492,11 +507,11 @@ function TokenSystemSection() {
               {/* Path 3 -> 4 */}
               <path d="M 260 60 H 365" stroke="rgba(255,255,255,0.06)" strokeWidth="3" fill="none" />
               {activeStep >= 4 && (
-                <path 
-                  d="M 260 60 H 365" 
-                  stroke="url(#gradient-3)" 
-                  strokeWidth="3" 
-                  fill="none" 
+                <path
+                  d="M 260 60 H 365"
+                  stroke="url(#gradient-3)"
+                  strokeWidth="3"
+                  fill="none"
                   className={activeStep === 4 ? "animate-march" : ""}
                 />
               )}
@@ -508,11 +523,11 @@ function TokenSystemSection() {
                 const isPassed = activeStep > id;
                 const x = 50 + (id - 1) * 105;
                 const y = 60;
-                
+
                 let strokeColor = "rgba(255,255,255,0.15)";
                 let fillColor = "#0e0e0e";
                 let textColor = "text-white/40";
-                
+
                 if (isActive) {
                   strokeColor = "white";
                   fillColor = "#161616";
@@ -524,8 +539,8 @@ function TokenSystemSection() {
                 }
 
                 return (
-                  <g 
-                    key={id} 
+                  <g
+                    key={id}
                     className="cursor-pointer transition-all duration-300"
                     onClick={() => setActiveStep(id)}
                     onMouseEnter={() => {
@@ -536,22 +551,22 @@ function TokenSystemSection() {
                   >
                     {/* Ring glow for active node */}
                     {isActive && (
-                      <circle 
-                        cx={x} 
-                        cy={y} 
-                        r="24" 
-                        fill="transparent" 
-                        stroke={id === 1 ? "#3b82f6" : id === 2 ? "#a855f7" : id === 3 ? "#10b981" : "#f59e0b"} 
+                      <circle
+                        cx={x}
+                        cy={y}
+                        r="24"
+                        fill="transparent"
+                        stroke={id === 1 ? "#3b82f6" : id === 2 ? "#a855f7" : id === 3 ? "#10b981" : "#f59e0b"}
                         strokeWidth="1.5"
-                        className="animate-ping opacity-30" 
+                        className="animate-ping opacity-30"
                       />
                     )}
-                    <circle 
-                      cx={x} 
-                      cy={y} 
-                      r="18" 
-                      fill={fillColor} 
-                      stroke={strokeColor} 
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r="18"
+                      fill={fillColor}
+                      stroke={strokeColor}
                       strokeWidth={isActive ? "2" : "1.5"}
                       className="transition-all duration-300"
                     />
@@ -561,13 +576,12 @@ function TokenSystemSection() {
                       </div>
                     </foreignObject>
                     {/* Label */}
-                    <text 
-                      x={x} 
-                      y={y + 36} 
-                      textAnchor="middle" 
-                      className={`text-[9px] font-mono uppercase tracking-wider transition-colors duration-300 fill-current ${
-                        isActive ? "fill-white font-bold" : "fill-white/40"
-                      }`}
+                    <text
+                      x={x}
+                      y={y + 36}
+                      textAnchor="middle"
+                      className={`text-[9px] font-mono uppercase tracking-wider transition-colors duration-300 fill-current ${isActive ? "fill-white font-bold" : "fill-white/40"
+                        }`}
                     >
                       Step {id}
                     </text>
@@ -580,15 +594,14 @@ function TokenSystemSection() {
           {/* Details Card */}
           <div className="relative mt-6 rounded-lg bg-black/60 p-5 ring-1 ring-white/10 flex-1 flex flex-col justify-center min-h-[140px] transition-all duration-300">
             <div className="flex items-center gap-3">
-              <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold ring-1 ring-inset ${
-                activeStep === 1 
-                  ? "bg-blue-400/10 text-blue-400 ring-blue-400/20" 
-                  : activeStep === 2 
-                  ? "bg-purple-400/10 text-purple-400 ring-purple-400/20" 
-                  : activeStep === 3 
-                  ? "bg-emerald-400/10 text-emerald-400 ring-emerald-400/20" 
-                  : "bg-amber-400/10 text-amber-400 ring-amber-400/20"
-              }`}>
+              <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold ring-1 ring-inset ${activeStep === 1
+                ? "bg-blue-400/10 text-blue-400 ring-blue-400/20"
+                : activeStep === 2
+                  ? "bg-purple-400/10 text-purple-400 ring-purple-400/20"
+                  : activeStep === 3
+                    ? "bg-emerald-400/10 text-emerald-400 ring-emerald-400/20"
+                    : "bg-amber-400/10 text-amber-400 ring-amber-400/20"
+                }`}>
                 {activeStep === 4 ? "COMPLETE" : "IN PROGRESS"}
               </span>
               <span className="text-xs text-white/40">Zero-Trust Security Options</span>

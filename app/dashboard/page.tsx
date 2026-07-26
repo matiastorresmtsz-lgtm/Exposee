@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { SignOutButton, useUser, UserButton } from "@clerk/nextjs";
 import {
   Chart as ChartJS,
@@ -387,9 +388,9 @@ export default function DashboardPage() {
 
   // Math for Circular Safety Gauge
   const getGaugeColor = (score: number) => {
-    if (score >= 90) return "stroke-white text-white";
-    if (score >= 70) return "stroke-white/60 text-white/80";
-    return "stroke-white/30 text-white/40";
+    if (score >= 90) return "stroke-emerald-500 text-emerald-400";
+    if (score >= 70) return "stroke-amber-500 text-amber-400";
+    return "stroke-rose-600 text-rose-500";
   };
 
   // average security rate calculation
@@ -430,13 +431,13 @@ export default function DashboardPage() {
         fill: true,
         label: "Safety Score",
         data: timeframeData.points,
-        borderColor: "rgba(255, 255, 255, 1)",
-        backgroundColor: "rgba(255, 255, 255, 0.05)",
+        borderColor: "rgba(59, 130, 246, 1)",
+        backgroundColor: "rgba(59, 130, 246, 0.1)",
         borderWidth: 2,
-        pointBackgroundColor: "#ffffff",
-        pointBorderColor: "rgba(255, 255, 255, 1)",
-        pointHoverBackgroundColor: "#ffffff",
-        pointHoverBorderColor: "rgba(255, 255, 255, 1)",
+        pointBackgroundColor: "#3b82f6",
+        pointBorderColor: "rgba(59, 130, 246, 1)",
+        pointHoverBackgroundColor: "#3b82f6",
+        pointHoverBorderColor: "rgba(59, 130, 246, 1)",
         pointRadius: 0,
         pointHoverRadius: 0,
         tension: 0,
@@ -510,11 +511,9 @@ export default function DashboardPage() {
         <div>
           {/* Logo / Header */}
           <div className="p-6 border-b border-white/10 flex items-center gap-3">
-            <img src="/logo.png" alt="Exposee" className="w-10 h-10 object-contain" />
-            <div>
-              <span className="font-bold text-white tracking-wide text-lg">Exposee</span>
-              <span className="text-xs block text-white/50 font-medium">Security Scanner</span>
-            </div>
+            <Link href="/" className="hover:opacity-90 transition">
+              <span className="text-sm font-bold uppercase tracking-[0.24em] text-blue-500">Exposee</span>
+            </Link>
           </div>
 
           {/* Navigation Menu */}
@@ -523,7 +522,7 @@ export default function DashboardPage() {
               onClick={() => setActiveTab("overview")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${
                 activeTab === "overview"
-                  ? "bg-white/10 text-white border border-white/20"
+                  ? "bg-white/10 text-white border border-white/20 font-semibold"
                   : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
               }`}
             >
@@ -539,7 +538,7 @@ export default function DashboardPage() {
               onClick={() => setActiveTab("scan")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${
                 activeTab === "scan"
-                  ? "bg-white/10 text-white border border-white/20"
+                  ? "bg-white/10 text-white border border-white/20 font-semibold"
                   : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
               }`}
             >
@@ -554,7 +553,7 @@ export default function DashboardPage() {
               onClick={() => setActiveTab("screenings")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${
                 activeTab === "screenings"
-                  ? "bg-white/10 text-white border border-white/20"
+                  ? "bg-white/10 text-white border border-white/20 font-semibold"
                   : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
               }`}
             >
@@ -664,7 +663,7 @@ export default function DashboardPage() {
                   </div>
                   <button
                     onClick={() => router.push("/connect-github")}
-                    className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-white hover:bg-white/90 text-black py-3 text-sm font-semibold transition"
+                    className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-white hover:bg-white/90 text-black py-3 text-sm font-semibold transition shadow-md"
                   >
                     {connected ? "Reconnect GitHub Account" : "Connect GitHub Account"}
                   </button>
@@ -714,7 +713,7 @@ export default function DashboardPage() {
                   </div>
                   <button
                     onClick={() => router.push("/connect-github")}
-                    className="inline-flex items-center justify-center rounded-lg bg-white hover:bg-white/90 text-black px-6 py-3 text-sm font-semibold transition"
+                    className="inline-flex items-center justify-center rounded-lg bg-white hover:bg-white/90 text-black px-6 py-3 text-sm font-semibold transition shadow-md"
                   >
                     Connect GitHub
                   </button>
@@ -882,7 +881,7 @@ export default function DashboardPage() {
                                   </span>
                                   <button
                                     onClick={() => handleScanClick(repo)}
-                                    className="rounded-lg border border-white/20 bg-white/5 hover:bg-white hover:text-black px-3.5 py-1.5 text-xs font-bold transition shrink-0"
+                                    className="rounded-lg border border-white/20 bg-white/5 hover:bg-white hover:text-black px-3.5 py-1.5 text-xs font-bold transition text-white shrink-0"
                                   >
                                     {previousScan ? "Rescan" : "Scan"}
                                   </button>
