@@ -18,7 +18,7 @@ function calculateCvss3Score(vector: string): number {
   const av = AV[parts.AV] || 0.85;
   const ac = AC[parts.AC] || 0.77;
   const ui = UI[parts.UI] || 0.85;
-  
+
   let pr = 0.85;
   if (parts.PR === 'L') {
     pr = scope === 'C' ? 0.68 : 0.62;
@@ -56,8 +56,8 @@ function calculateCvss3Score(vector: string): number {
 
 // Helper to determine qualitative severity rating
 function getSeverity(vulnDetail: any): "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" {
-  const rawSeverity = 
-    vulnDetail.database_specific?.severity || 
+  const rawSeverity =
+    vulnDetail.database_specific?.severity ||
     vulnDetail.ecosystem_specific?.severity;
   if (typeof rawSeverity === "string") {
     const clean = rawSeverity.toUpperCase();
@@ -220,7 +220,7 @@ export async function GET(request: NextRequest) {
 
     let hasEnvFile = false;
     let hasKeys = false;
-    
+
     const envFilePaths: string[] = [];
     const keyFilePaths: string[] = [];
     const packageJsonFiles: any[] = [];
@@ -362,7 +362,7 @@ export async function GET(request: NextRequest) {
 
       const batchSize = 500;
       const osvResults: any[] = [];
-      
+
       for (let i = 0; i < queries.length; i += batchSize) {
         const chunk = queries.slice(i, i + batchSize);
         try {
@@ -430,8 +430,8 @@ export async function GET(request: NextRequest) {
           const cve = getCve(detail);
           const fixedVersion = getFixedVersion(detail, pkg.name);
           const rawDescription = detail.summary || detail.details || "No vulnerability details available.";
-          const description = rawDescription.length > 250 
-            ? rawDescription.substring(0, 247) + "..." 
+          const description = rawDescription.length > 250
+            ? rawDescription.substring(0, 247) + "..."
             : rawDescription;
 
           vulnerabilities.push({
@@ -515,7 +515,7 @@ export async function GET(request: NextRequest) {
                 severity: pattern.severity,
                 category: pattern.category,
               });
-              
+
               recommendations.push({
                 title: `Rotate hardcoded ${pattern.name} in ${f.path}`,
                 action: `Rotate the leaked credential, remove it from '${f.path}', load it via environment variables, and scrub git history.`,

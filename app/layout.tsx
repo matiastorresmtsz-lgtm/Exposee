@@ -1,4 +1,4 @@
-import {ClerkProvider} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Exposee — GitHub leak scanner",
-  description: "Exposee scans GitHub repos for leaked env variables, secrets, and vulnerable packages.",
+  title: "Sliyce — GitHub leak scanner",
+  description: "Sliyce scans GitHub repos for leaked env variables, secrets, and vulnerable packages.",
   icons: {
     icon: "/logo.png",
   },

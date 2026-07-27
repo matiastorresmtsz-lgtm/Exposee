@@ -20,7 +20,7 @@ export async function GET() {
       headers: {
         Authorization: `Bearer ${githubAccessToken}`,
         Accept: "application/vnd.github.v3+json",
-        "User-Agent": "Exposee-App",
+        "User-Agent": "Sliyce-App",
       },
     });
 

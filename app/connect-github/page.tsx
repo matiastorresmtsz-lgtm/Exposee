@@ -36,14 +36,14 @@ function ConnectGitHubContent() {
             <p className="text-sm uppercase tracking-[0.24em] text-white/50">GitHub connect</p>
             <h1 className="text-4xl font-semibold text-white">Authorize GitHub access</h1>
             <p className="mx-auto max-w-2xl text-white/60">
-              Hi {displayName}, connect GitHub so Exposee can scan your repositories and surface leaks, secrets, and vulnerable packages.
+              Hi {displayName}, connect GitHub so Sliyce can scan your repositories and surface leaks, secrets, and vulnerable packages.
             </p>
           </div>
 
           <div className="mt-10 rounded-lg border border-white/10 bg-black/70 p-8">
             <div className="space-y-4">
               <p className="text-lg font-semibold text-white">Why connect GitHub?</p>
-              <p className="text-white/60">We only scan repos that you authorize. A GitHub connection lets Exposee read repository metadata and commit history for leak detection.</p>
+              <p className="text-white/60">We only scan repos that you authorize. A GitHub connection lets Sliyce read repository metadata and commit history for leak detection.</p>
               <p className="text-white/60">No credentials are stored, and your connection is read-only.</p>
             </div>
             {errorMessage ? (

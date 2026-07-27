@@ -13,7 +13,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-4">
             <Link href="/" className="hover:opacity-90 transition">
-              <span className="text-sm font-bold uppercase tracking-[0.24em] text-blue-500">Exposee</span>
+              <span className="text-sm font-bold uppercase tracking-[0.24em] text-blue-500">Sliyce</span>
             </Link>
           </div>
 
@@ -53,11 +53,11 @@ export default function Home() {
             <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15] sm:leading-[1.15] lg:leading-[1.15]">
               Find exposed secrets in your repositories with{" "}
               <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent block mt-2 font-semibold">
-                Exposee Leak Scanner
+                Sliyce Leak Scanner
               </span>
             </h1>
             <p className="max-w-2xl mx-auto text-lg leading-8 text-white/60">
-              Exposee scans GitHub repositories, commit history, and dependency manifests to surface accidental leaks, API keys, tokens, and vulnerable packages. Clear findings, actionable remediation, and CI-ready protection.
+              Sliyce scans GitHub repositories, commit history, and dependency manifests to surface accidental leaks, API keys, tokens, and vulnerable packages. Clear findings, actionable remediation, and CI-ready protection.
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export default function Home() {
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-white">Continuous codebase security checks</h3>
               <p className="text-sm text-white/60 leading-relaxed">
-                Ensure credentials and API tokens are never exposed in your public or private repositories. Exposee acts as a dynamic monitor guarding your Git branches.
+                Ensure credentials and API tokens are never exposed in your public or private repositories. Sliyce acts as a dynamic monitor guarding your Git branches.
               </p>
             </div>
 
@@ -179,7 +179,7 @@ export default function Home() {
               <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-white">2</div>
               <div>
                 <p className="font-semibold text-white">Scan commits, history, and manifests</p>
-                <p className="mt-1 text-sm text-white/50">Exposee checks for secrets, config leaks, and vulnerable packages.</p>
+                <p className="mt-1 text-sm text-white/50">Sliyce checks for secrets, config leaks, and vulnerable packages.</p>
               </div>
             </div>
             <div className="flex gap-4 rounded-lg bg-black/60 p-5">
@@ -198,17 +198,17 @@ export default function Home() {
           <div className="space-y-6 rounded-xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/50">
             <div className="space-y-3">
               <p className="text-sm uppercase tracking-[0.24em] text-white/50">FAQ</p>
-              <h2 className="text-3xl font-semibold text-white sm:text-4xl">Common questions about Exposee</h2>
+              <h2 className="text-3xl font-semibold text-white sm:text-4xl">Common questions about Sliyce</h2>
             </div>
 
             <div className="space-y-4">
               <details className="group rounded-lg border border-white/10 bg-black/50 p-5 transition hover:border-white/30">
                 <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">
-                  Why choose Exposee over the competition?
+                  Why choose Sliyce over the competition?
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
-                  Traditional scanners rely strictly on narrow signature databases or exact pattern matching, missing complex leaks. Exposee goes beyond basics by scanning repository commit history, dependency manifests, and configurations to locate accidental leaks that standard tools miss entirely.
+                  Traditional scanners rely strictly on narrow signature databases or exact pattern matching, missing complex leaks. Sliyce goes beyond basics by scanning repository commit history, dependency manifests, and configurations to locate accidental leaks that standard tools miss entirely.
                 </p>
               </details>
 
@@ -218,7 +218,7 @@ export default function Home() {
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
-                  Yes, Exposee is built from the ground up exclusively for GitHub. Rather than offering a generic, multi-provider platform, we focus entirely on native integration with the GitHub ecosystem, including OAuth setups, repository webhooks, pull request branch protections, and CI/CD pipelines.
+                  Yes, Sliyce is built from the ground up exclusively for GitHub. Rather than offering a generic, multi-provider platform, we focus entirely on native integration with the GitHub ecosystem, including OAuth setups, repository webhooks, pull request branch protections, and CI/CD pipelines.
                 </p>
               </details>
 
@@ -234,7 +234,7 @@ export default function Home() {
 
               <details className="group rounded-lg border border-white/10 bg-black/50 p-5 transition hover:border-white/30">
                 <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">
-                  Is Exposee free to use?
+                  Is Sliyce free to use?
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
@@ -248,7 +248,7 @@ export default function Home() {
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
-                  Exposee is built for performance. The average scanning duration for standard repositories is under 15 seconds, ensuring you receive near-instant results for your commits and dependencies.
+                  Sliyce is built for performance. The average scanning duration for standard repositories is under 15 seconds, ensuring you receive near-instant results for your commits and dependencies.
                 </p>
               </details>
 
@@ -258,7 +258,7 @@ export default function Home() {
                   <span className="transition duration-200 group-open:-rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-7 text-white/50">
-                  We target broad scanning coverage to find every potential leak. While no scanner can be 100% perfect, Exposee minimizes false alerts and walks you through verifying and resolving every security issue flagged.
+                  We target broad scanning coverage to find every potential leak. While no scanner can be 100% perfect, Sliyce minimizes false alerts and walks you through verifying and resolving every security issue flagged.
                 </p>
               </details>
             </div>
@@ -288,7 +288,7 @@ export default function Home() {
       <footer className="mx-auto max-w-7xl px-6 pb-8 pt-4">
         <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-5 shadow-2xl shadow-black/50">
           <div className="flex flex-col gap-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} Exposee — built for secure teams.</p>
+            <p>© {new Date().getFullYear()} Sliyce — built for secure teams.</p>
             <div className="flex flex-wrap gap-4">
               <a
                 className="transition text-white/60 hover:text-white"
@@ -340,7 +340,7 @@ const tokenSteps = [
     id: 3,
     title: "3. Cryptographic Verification",
     short: "Decentralized trust handshake",
-    desc: "The Exposee scanning gateway validates the token signature, confirms environmental attestation (ensuring the caller is the actual, un-tampered CI environment), and checks the expiry timestamp.",
+    desc: "The Sliyce scanning gateway validates the token signature, confirms environmental attestation (ensuring the caller is the actual, un-tampered CI environment), and checks the expiry timestamp.",
     color: "from-emerald-500 to-teal-500",
     glowColor: "rgba(16, 185, 129, 0.15)",
     icon: (
@@ -411,7 +411,7 @@ function TokenSystemSection() {
         {/* Left Column: Explanation */}
         <div className="flex flex-col justify-between space-y-6">
           <p className="text-lg leading-8 text-white/60">
-            Exposee is developing a decentralized, cryptographically attested token architecture to completely eliminate the need for storing long-lived GitHub access tokens or static API keys.
+            Sliyce is developing a decentralized, cryptographically attested token architecture to completely eliminate the need for storing long-lived GitHub access tokens or static API keys.
           </p>
 
           <div className="space-y-3">

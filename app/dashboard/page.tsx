@@ -198,18 +198,18 @@ export default function DashboardPage() {
     fetchStatus();
 
     // Load screenings from localStorage
-    const saved = localStorage.getItem("exposee_screened_repos");
+    const saved = localStorage.getItem("sliyce_screened_repos");
     if (saved) {
       try {
         setScreenedRepos(JSON.parse(saved));
       } catch (e) {
         console.error(e);
         setScreenedRepos(defaultMockReports);
-        localStorage.setItem("exposee_screened_repos", JSON.stringify(defaultMockReports));
+        localStorage.setItem("sliyce_screened_repos", JSON.stringify(defaultMockReports));
       }
     } else {
       setScreenedRepos(defaultMockReports);
-      localStorage.setItem("exposee_screened_repos", JSON.stringify(defaultMockReports));
+      localStorage.setItem("sliyce_screened_repos", JSON.stringify(defaultMockReports));
     }
   }, [isLoaded, isSignedIn]);
 
@@ -261,7 +261,7 @@ export default function DashboardPage() {
       "Inspecting config files for secrets (.env, id_rsa)...",
       "Analyzing package dependencies for security CVEs...",
       "Running semantic validation heuristics...",
-      "Generating Exposee safety report..."
+      "Generating Sliyce safety report..."
     ];
 
     let currentStep = 0;
@@ -304,7 +304,7 @@ export default function DashboardPage() {
         ];
 
         setScreenedRepos(updatedScreenings);
-        localStorage.setItem("exposee_screened_repos", JSON.stringify(updatedScreenings));
+        localStorage.setItem("sliyce_screened_repos", JSON.stringify(updatedScreenings));
 
         setCompletedScanInfo({
           repoId: repo.id,
@@ -359,7 +359,7 @@ export default function DashboardPage() {
         ];
 
         setScreenedRepos(updatedScreenings);
-        localStorage.setItem("exposee_screened_repos", JSON.stringify(updatedScreenings));
+        localStorage.setItem("sliyce_screened_repos", JSON.stringify(updatedScreenings));
 
         setCompletedScanInfo({
           repoId: repo.id,
@@ -512,7 +512,7 @@ export default function DashboardPage() {
           {/* Logo / Header */}
           <div className="p-6 border-b border-white/10 flex items-center gap-3">
             <Link href="/" className="hover:opacity-90 transition">
-              <span className="text-sm font-bold uppercase tracking-[0.24em] text-blue-500">Exposee</span>
+              <span className="text-sm font-bold uppercase tracking-[0.24em] text-blue-500">Sliyce</span>
             </Link>
           </div>
 
@@ -520,11 +520,10 @@ export default function DashboardPage() {
           <nav className="p-4 space-y-1">
             <button
               onClick={() => setActiveTab("overview")}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${
-                activeTab === "overview"
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${activeTab === "overview"
                   ? "bg-white/10 text-white border border-white/20 font-semibold"
                   : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
-              }`}
+                }`}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="3" y="3" width="7" height="9" rx="1" />
@@ -536,11 +535,10 @@ export default function DashboardPage() {
             </button>
             <button
               onClick={() => setActiveTab("scan")}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${
-                activeTab === "scan"
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${activeTab === "scan"
                   ? "bg-white/10 text-white border border-white/20 font-semibold"
                   : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
-              }`}
+                }`}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
@@ -551,11 +549,10 @@ export default function DashboardPage() {
             </button>
             <button
               onClick={() => setActiveTab("screenings")}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${
-                activeTab === "screenings"
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${activeTab === "screenings"
                   ? "bg-white/10 text-white border border-white/20 font-semibold"
                   : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
-              }`}
+                }`}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -603,11 +600,10 @@ export default function DashboardPage() {
             {activeTab === "scan" ? "Scan Repositories" : activeTab === "screenings" ? "Screenings & Reports" : "Overview"}
           </h2>
           <div className="flex items-center gap-4">
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium border ${
-              connected
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium border ${connected
                 ? "bg-white/5 text-white border-white/20"
                 : "bg-white/5 text-white/60 border-white/10"
-            }`}>
+              }`}>
               <span className={`w-1.5 h-1.5 rounded-lg ${connected ? "bg-white animate-pulse" : "bg-white/30"}`}></span>
               {connected ? "GitHub Connected" : "GitHub Disconnected"}
             </span>
@@ -627,7 +623,7 @@ export default function DashboardPage() {
                   <p className="text-xs uppercase tracking-[0.24em] text-white/70 font-semibold">Security Portal</p>
                   <h1 className="text-3xl font-semibold text-white">Welcome back, {displayName}</h1>
                   <p className="text-white/60 leading-relaxed max-w-2xl">
-                    Exposee monitors your GitHub commits, source code, and configurations to surface security leaks, exposed environment variables, and vulnerable packages automatically.
+                    Sliyce monitors your GitHub commits, source code, and configurations to surface security leaks, exposed environment variables, and vulnerable packages automatically.
                   </p>
                 </div>
               </div>
@@ -677,7 +673,7 @@ export default function DashboardPage() {
                     <p className="mt-4 text-white/60 text-sm leading-relaxed">
                       {connected
                         ? "Your integration is complete! Navigate to the 'Scan Repos' tab in the sidebar to review and trigger security check scans on your private and public repositories."
-                        : "Connect your GitHub account to authorize Exposee to fetch your public and private repositories. Once linked, you can perform instant scans to locate exposed env files and API keys."}
+                        : "Connect your GitHub account to authorize Sliyce to fetch your public and private repositories. Once linked, you can perform instant scans to locate exposed env files and API keys."}
                     </p>
                   </div>
                   {connected && (
@@ -708,7 +704,7 @@ export default function DashboardPage() {
                   <div className="space-y-2">
                     <h3 className="text-xl font-semibold text-white">GitHub Connection Required</h3>
                     <p className="text-white/60 text-sm leading-relaxed">
-                      You must authorize your GitHub account in Exposee before we can retrieve and run security scans on your repository code.
+                      You must authorize your GitHub account in Sliyce before we can retrieve and run security scans on your repository code.
                     </p>
                   </div>
                   <button
@@ -935,11 +931,10 @@ export default function DashboardPage() {
                           <button
                             key={report.id}
                             onClick={() => setSelectedReportId(isSelected ? null : report.id)}
-                            className={`w-full text-left rounded-lg border p-4 flex items-center justify-between gap-3 transition ${
-                              isSelected
+                            className={`w-full text-left rounded-lg border p-4 flex items-center justify-between gap-3 transition ${isSelected
                                 ? "bg-white/10 border-white/30 shadow-lg shadow-white/5"
                                 : "bg-white/5 border-white/10 hover:border-white/20"
-                            }`}
+                              }`}
                           >
                             <div className="min-w-0">
                               <h4 className="font-semibold text-white truncate text-sm">{report.name}</h4>
@@ -949,11 +944,10 @@ export default function DashboardPage() {
                             </div>
 
                             <div className="flex items-center gap-3">
-                              <span className={`text-[10px] px-2 py-0.5 rounded-lg font-bold ${
-                                report.risks.length + report.vulnerabilities.length > 0
+                              <span className={`text-[10px] px-2 py-0.5 rounded-lg font-bold ${report.risks.length + report.vulnerabilities.length > 0
                                   ? "bg-white/10 text-white"
                                   : "bg-white/5 text-white/50"
-                              }`}>
+                                }`}>
                                 {report.risks.length + report.vulnerabilities.length} Alerts
                               </span>
 
@@ -1106,7 +1100,7 @@ export default function DashboardPage() {
                               </div>
                               <div>
                                 <p className="font-semibold text-white text-sm">Codebase Security Clean</p>
-                                <p className="text-xs text-white/40 max-w-xs mt-1">Exposee found no high-risk credential leaks or outdated vulnerable libraries in this directory scanner check.</p>
+                                <p className="text-xs text-white/40 max-w-xs mt-1">Sliyce found no high-risk credential leaks or outdated vulnerable libraries in this directory scanner check.</p>
                               </div>
                             </div>
                           )}
@@ -1115,7 +1109,7 @@ export default function DashboardPage() {
 
                         {/* Diagnostic detail footer */}
                         <div className="pt-4 border-t border-white/5 flex justify-between items-center text-[10px] text-white/40 shrink-0">
-                          <span>Report Ref: EXP-{activeReport.id}-{new Date(activeReport.scannedAt).getMonth()}</span>
+                          <span>Report Ref: SLC-{activeReport.id}-{new Date(activeReport.scannedAt).getMonth()}</span>
                           <a
                             href={activeReport.fullName ? `https://github.com/${activeReport.fullName}` : "#"}
                             target="_blank"
@@ -1146,11 +1140,10 @@ export default function DashboardPage() {
                         <button
                           key={filter}
                           onClick={() => setTimeframe(filter)}
-                          className={`text-xs px-3.5 py-1.5 rounded-lg font-semibold transition ${
-                            timeframe === filter
+                          className={`text-xs px-3.5 py-1.5 rounded-lg font-semibold transition ${timeframe === filter
                               ? "bg-white text-black font-bold"
                               : "text-white/60 hover:text-white"
-                          }`}
+                            }`}
                         >
                           {filter === "7d" ? "7 Days" : filter === "30d" ? "30 Days" : "90 Days"}
                         </button>
