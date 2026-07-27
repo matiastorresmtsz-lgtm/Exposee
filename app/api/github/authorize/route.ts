@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
   authorizeUrl.searchParams.set("allow_signup", "false");
 
   const response = NextResponse.redirect(authorizeUrl);
-  response.cookies.set("exposee_github_oauth_state", state, {
+  response.cookies.set("sliyce_github_oauth_state", state, {
     httpOnly: true,
     path: "/",
     maxAge: 600,

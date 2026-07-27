@@ -187,7 +187,7 @@ export async function GET(request: NextRequest) {
       headers: {
         Authorization: `Bearer ${githubAccessToken}`,
         Accept: "application/vnd.github.v3+json",
-        "User-Agent": "Exposee-App",
+        "User-Agent": "Sliyce-App",
       },
     });
 
@@ -204,7 +204,7 @@ export async function GET(request: NextRequest) {
       headers: {
         Authorization: `Bearer ${githubAccessToken}`,
         Accept: "application/vnd.github.v3+json",
-        "User-Agent": "Exposee-App",
+        "User-Agent": "Sliyce-App",
       },
     });
 
@@ -284,7 +284,7 @@ export async function GET(request: NextRequest) {
           headers: {
             Authorization: `Bearer ${githubAccessToken}`,
             Accept: "application/vnd.github.v3.raw",
-            "User-Agent": "Exposee-App",
+            "User-Agent": "Sliyce-App",
           },
         });
         if (res.ok) return await res.text();

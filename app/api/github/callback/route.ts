@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const errorDescription = url.searchParams.get("error_description");
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
-  const savedState = request.cookies.get("exposee_github_oauth_state")?.value;
+  const savedState = request.cookies.get("sliyce_github_oauth_state")?.value;
 
   if (error) {
     const redirectUrl = new URL("/connect-github", request.url);
@@ -70,6 +70,6 @@ export async function GET(request: NextRequest) {
   });
 
   const response = NextResponse.redirect(new URL("/dashboard", request.url));
-  response.cookies.delete({ name: "exposee_github_oauth_state", path: "/" });
+  response.cookies.delete({ name: "sliyce_github_oauth_state", path: "/" });
   return response;
 }
