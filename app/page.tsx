@@ -8,8 +8,13 @@ export default function Home() {
   const { isLoaded, isSignedIn } = useUser();
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <header className="sticky top-0 z-20 border-b border-white/[0.12] bg-[#111111]/95 backdrop-blur-xl">
+    <div className="min-h-screen bg-black text-white text-center justify-center ">
+<div 
+  className="h-12 bg-blue-600 flex items-center justify-center text-white underline cursor-pointer"
+  onClick={() => window.location.href = "https://github.com/matiastorresmtsz-lgtm/Sliyce"}
+>
+  Site rebrand + SLIYCE 2.0 - See on GitHub
+</div>      <header className="sticky top-0 z-20 border-b border-white/[0.12] bg-[#111111]/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-4">
             <Link href="/" className="hover:opacity-90 transition">
